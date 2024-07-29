@@ -35,4 +35,3 @@ class Client() :
         def on_message(self, frame):
             self.client.data = json.loads(frame.body)
             self.client.callback(self.client.data, self.client)
-            sleep(0.25)

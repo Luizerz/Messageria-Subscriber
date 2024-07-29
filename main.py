@@ -18,11 +18,15 @@ def main(page: ft.Page):
         content=ft.Text("O Sensor " + str(input_text.value) + " está sendo observado!"),
         action="Ok!",
     )
+    page.window.width = 500
+    page.window.resizable = False
     column = ft.Column(controls=[])
     def generateContainer(data, obj: Client):
         dataList[obj.position] = data
-        containerList[obj.position] = ft.Text(value=('ID: ' + str(data['id']) + ' valor: ' + str(data['data']) + ' unidade: ' + str(DataType(int(data['type'])).name) + ' alarme: ' + str(data['alarm'])))
-
+        if data['alarm'] == 'True':
+            containerList[obj.position] = ft.Text(color=ft.colors.AMBER_400, value=('ID: ' + str(data['id']) + ' valor: ' + str(round(float(data['data']), 2)) + ' unidade: ' + str(DataType(str(data['type'])).value) + ' alarme: ' + str(data['alarm'])))
+        else:
+            containerList[obj.position] = ft.Text(color=ft.colors.GREEN_400, value=('ID: ' + str(data['id']) + ' valor: ' + str(round(float(data['data']), 2)) + ' unidade: ' + str(DataType(str(data['type'])).value) + ' alarme: ' + str(data['alarm'])))
     def submit(e):
         if input_text.value in subscriberList:
             page.snack_bar.content = ft.Text("Já existe um sensor com esse ID")
@@ -38,13 +42,11 @@ def main(page: ft.Page):
                 
             else:
                 subscriberList.append(input_text.value)
-                Client(input_text.value, generateContainer, 1)
-               
-            
+                Client(input_text.value, generateContainer, (subscriberList.__len__() -1))
+                
 
     button = ft.ElevatedButton(text="Observar!", on_click=submit)
     
-
     page.add(input_text, button, column)
     while True:
         listItem = []
