@@ -1,5 +1,5 @@
 from enum import Enum, auto
-class DataType(Enum):
+class UnityType(Enum):
     velocity = "Velocidade"
     umidity = "Umidade"
     temperature = "Temperatura"
