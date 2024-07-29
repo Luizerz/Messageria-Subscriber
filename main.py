@@ -17,13 +17,10 @@ def main(page: ft.Page):
     )
     page.window.width = 500
     page.window.resizable = False
-<<<<<<< Updated upstream
     page.theme = ft.Theme(color_scheme_seed=ft.colors.PURPLE_ACCENT_700)
-=======
     page.theme = ft.Theme(color_scheme_seed=ft.colors.GREEN_200)
     page.bgcolor = ft.colors.BROWN_400
 
->>>>>>> Stashed changes
     column = ft.Column(controls=[])
 
     def generateContainer(data, obj: Client):
