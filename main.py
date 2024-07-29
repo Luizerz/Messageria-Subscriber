@@ -20,6 +20,7 @@ def main(page: ft.Page):
     )
     page.window.width = 500
     page.window.resizable = False
+    page.theme = ft.Theme(color_scheme_seed=ft.colors.PURPLE_ACCENT_700)
     column = ft.Column(controls=[])
     def generateContainer(data, obj: Client):
         dataList[obj.position] = data
