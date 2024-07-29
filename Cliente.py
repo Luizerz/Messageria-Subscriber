@@ -2,7 +2,7 @@
 import stomp 
 import json 
 from time import sleep
-import threading
+
 
 class Client() :
     def __init__(self, id: str, callback, position: int): 
@@ -35,5 +35,4 @@ class Client() :
         def on_message(self, frame):
             self.client.data = json.loads(frame.body)
             self.client.callback(self.client.data, self.client)
-            # threading.Thread(target=self.client.callback(self.client.data)).start()
             sleep(0.25)
